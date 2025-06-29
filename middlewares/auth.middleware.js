@@ -11,7 +11,7 @@ export async function authMiddleware(req, res, next) {
         }
         else {
             req.user = validate.userId
-            next()
+         next()
         }
     }
     else {
