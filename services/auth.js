@@ -16,7 +16,7 @@ export async function signupService(name, email, password) {
     }
        
     )
-const token=generateToken(userData._id)
+const token=await generateToken(userData._id)
 
 
     return {messege:"user created succesfully",token}
@@ -38,6 +38,6 @@ export async function signInService(email,password) {
 }
 
 export async function getMeServices(userId) {
-     const user =await userModel.findById({userId})
+     const user =await userModel.findById(userId).select('-password -__v')
      return {user, message:"user fetched"}
 }

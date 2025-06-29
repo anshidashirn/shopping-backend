@@ -1,4 +1,4 @@
-import { signupService,signInService } from "../services/auth.js"
+import { signupService,signInService, getMeServices } from "../services/auth.js"
 
 export async function signupController(req,res){
     const data=req.body
@@ -19,6 +19,12 @@ export async function signInController(req,res) {
 }
 
 export async function getMeController(req,res) {
-   res.send('hi')
+   getMeServices(req.user._id).then((result)=>{
+      res.send(result)
+   }).catch((err)=>
+ res.send({message:err.message,failed:true}))
+
+  // console.log(req.user)
+  // res.send(req.user)
    
 }
