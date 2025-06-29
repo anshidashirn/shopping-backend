@@ -38,6 +38,6 @@ export async function signInService(email,password) {
 }
 
 export async function getMeServices(userId) {
-     const user =await userModel.findById(userId)
+     const user =await userModel.findById({userId})
      return {user, message:"user fetched"}
 }
