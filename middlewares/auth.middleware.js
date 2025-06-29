@@ -1,7 +1,14 @@
 import { validateToken } from "../libs/token.js"
+import { publicRouters } from "./public.route.js"
 
 export async function authMiddleware(req, res, next) {
-    const token =  req.headers.token
+
+    if(publicRouters.includes(req.path)){
+        next()
+        return
+    }
+        
+    const token = await req.headers.token
     console.log(token)
     if (token) {
         const validate = await validateToken(token)

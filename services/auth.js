@@ -6,7 +6,7 @@ export async function signupService(name, email, password) {
    
    const user =await userModel.findOne({email:email})
    if (user){
-    throw new Error({messege:"user already exist"})
+    throw new Error("user already exist")
    } 
    
    const userData= await userModel.create({
@@ -19,7 +19,7 @@ export async function signupService(name, email, password) {
 const token=await generateToken(userData._id)
 
 
-    return {messege:"user created succesfully",token}
+    return {message:"user created succesfully",token}
 }
 
 export async function signInService(email,password) {
@@ -28,11 +28,11 @@ export async function signInService(email,password) {
     if (user){
         const token=await generateToken(user._id)
         console.log(token)
-        return{messege:"user logged in succesfully",token}
+        return{message:"user logged in succesfully",token}
 
     }
     else{
-        throw new error('invalid email or password')
+        throw new Error('invalid email or password')
     }
     
 }
