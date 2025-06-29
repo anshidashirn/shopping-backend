@@ -17,3 +17,8 @@ export async function signInController(req,res) {
    }).catch((err)=>
  res.send({message:err.message,failed:true}))
 }
+
+export async function getMeController(req,res) {
+   res.send('hi')
+   
+}

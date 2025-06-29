@@ -3,12 +3,13 @@ import { routes } from "./routes/route.js"
 import { connectDatabase } from './libs/db.config.js'
 import { signupService } from './services/auth.js'
 import cors from 'cors'
+import { authMiddleware } from './middlewares/auth.middleware.js'
 
 
 const app = express()
 app.use(express.json())
 app.use(cors({origin:'*'}))
-
+app.use(authMiddleware)
 
 
 routes.forEach((route) => {
