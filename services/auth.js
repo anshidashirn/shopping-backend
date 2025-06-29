@@ -26,7 +26,7 @@ export async function signInService(email,password) {
    
     const user =await userModel.findOne({email,password})
     if (user){
-        const token=generateToken(user._id)
+        const token=await generateToken(user._id)
         console.log(token)
         return{messege:"user logged in succesfully",token}
 
